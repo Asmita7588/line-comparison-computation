@@ -1,20 +1,5 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-/*
-As a fan of geometry, I want to
-model a line based on a point
-consisting of (x, y) co
-
--ordinates
-using the Cartesian system,
-So that I can calculate its
-length
-.
-
-- A Length as 2 Points (x1, y1) and (x2, y2) - Length of a Line = sqrt( (x2 - x1) ^ 2 + (y2
-
-- y1) ^ 2)
- */
 
 import java.util.Scanner;
 
@@ -39,10 +24,33 @@ public class Main {
         System.out.print("Enter y2: ");
         double y2 = sc.nextDouble();
 
-        double length = calculateLineLength(x1, y1, x2, y2);
+        System.out.println("Enter co-ordinates of second line ");
+        System.out.println("Enter x3 : ");
+        double x3 = sc.nextDouble();
+        System.out.print("Enter y3: ");
+        double y3 = sc.nextDouble();
+        System.out.print("Enter x4: ");
+        double x4 = sc.nextDouble();
+        System.out.print("Enter y4: ");
+        double y4 = sc.nextDouble();
+
+        double length1 = calculateLineLength(x1, y1, x2, y2);
+        double length2 = calculateLineLength(x3, y3, x4, y4);
+
 
         System.out.printf("The length of the line between points (%.2f, %.2f) and (%.2f, %.2f) is: %.2f\n",
-                x1, y1, x2, y2, length);
+                x1, y1, x2, y2, length1);
 
+        System.out.printf("The length of the line between points (%.2f, %.2f) and (%.2f, %.2f) is: %.2f\n",
+                x3, y3, x4, y4, length2);
+
+
+        if(Double.valueOf(length1).equals(Double.valueOf(length2))){
+            System.out.println("The two lines are equal.");
+        } else {
+            System.out.println("The two lines are not equal.");
+        }
+
+        sc.close();
     }
 }
