@@ -51,6 +51,15 @@ public class Main {
             System.out.println("The two lines are not equal.");
         }
 
+        int compareResult = Double.valueOf(length1).compareTo(Double.valueOf(length2));
+
+        if(compareResult == 0){
+           System.out.println("The both lines are equal");
+        }else if (compareResult > 0) {
+            System.out.println("The first line is longer than the second line.");
+        } else {
+            System.out.println("The first line is shorter than the second line.");
+        }
         sc.close();
     }
 }
