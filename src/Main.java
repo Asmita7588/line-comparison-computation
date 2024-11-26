@@ -3,11 +3,57 @@
 
 import java.util.Scanner;
 
+ class Point{
+   private double x;
+     private double  y;
+
+   public Point(double x,double y){
+       this.x = x;
+       this.y= y;
+   }
+
+   public double getY(){
+       return y;
+   }
+
+     public double getX(){
+         return x;
+     }
+
+}
+
+class Line{
+     private Point startPoint;
+     private Point endPoint;
+
+     public Line(Point startPoint, Point endPoint){
+         this.startPoint = startPoint;
+         this.endPoint = endPoint;
+     }
+
+    public double calculateLength() {
+        return Math.sqrt(Math.pow((endPoint.getX() - startPoint.getX()), 2) +
+                Math.pow((endPoint.getY() - startPoint.getY()), 2));
+    }
+
+    // Method to check equality of two lines using the equals() method
+    public boolean isEqual(Line otherLine) {
+        return Double.valueOf(this.calculateLength()).equals(Double.valueOf(otherLine.calculateLength()));
+    }
+
+    // Method to compare two lines using compareTo()
+    public int compareTo(Line otherLine) {
+        return Double.valueOf(this.calculateLength()).compareTo(Double.valueOf(otherLine.calculateLength()));
+    }
+
+}
+
 public class Main {
 
     public static double calculateLineLength(double x1, double y1, double x2, double y2){
         return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
     }
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -34,6 +80,24 @@ public class Main {
         System.out.print("Enter y4: ");
         double y4 = sc.nextDouble();
 
+        // Create Points for both lines
+        Point startPoint1 = new Point(x1, y1);
+        Point endPoint1 = new Point(x2, y2);
+        Point startPoint2 = new Point(x3, y3);
+        Point endPoint2 = new Point(x4, y4);
+
+        // Create Lines using Points
+        Line line1 = new Line(startPoint1, endPoint1);
+        Line line2 = new Line(startPoint2, endPoint2);
+
+        // Calculate lengths of both lines
+        double len1 = line1.calculateLength();
+        double len2 = line2.calculateLength();
+
+        System.out.println("Length of the first line: " + len1);
+        System.out.println("Length of the second line: " + len2);
+
+
         double length1 = calculateLineLength(x1, y1, x2, y2);
         double length2 = calculateLineLength(x3, y3, x4, y4);
 
@@ -45,13 +109,13 @@ public class Main {
                 x3, y3, x4, y4, length2);
 
 
-        if(Double.valueOf(length1).equals(Double.valueOf(length2))){
+        if(line1.equals(line2)){
             System.out.println("The two lines are equal.");
         } else {
             System.out.println("The two lines are not equal.");
         }
 
-        int compareResult = Double.valueOf(length1).compareTo(Double.valueOf(length2));
+        int compareResult = line1.compareTo(line2);
 
         if(compareResult == 0){
            System.out.println("The both lines are equal");
